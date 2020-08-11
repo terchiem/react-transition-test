@@ -22,7 +22,7 @@ function PhotoList() {
   return (
     <div className="PhotoList">
       { photos.length ?
-          photos.map(photo => <Photo key={photo.id} url={photo.thumbnailUrl} title={photo.title} />) :
+          photos.map(photo => <Photo key={photo.id} url={photo.thumbnailUrl} title={photo.title} delay={photo.id*80} />) :
           null }
     </div>
   );
