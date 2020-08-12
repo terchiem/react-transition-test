@@ -1,15 +1,14 @@
 import React from 'react';
-import Photo from './Photo';
+import PhotoRow from './PhotoRow';
 import './PhotoList.css';
 
 
-function PhotoList({ photos }) {
-
+function PhotoList({ photoRows }) {
 
   return (
     <div className="PhotoList">
-      { photos.length ?
-          photos.map(photo => <Photo key={photo.id} url={photo.thumbnailUrl} title={photo.title} delay={photo.id*80} />) :
+      { photoRows.length ?
+          photoRows.map(row => <PhotoRow key={row[0].id} row={row} />) :
           null }
     </div>
   );

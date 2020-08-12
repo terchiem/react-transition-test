@@ -6,6 +6,11 @@
   opacity: 0;
 }
 
+.Photo img {
+  width: 100%;
+  height: auto;
+}
+
 @keyframes fade-in {
   0% {
     opacity: 0;

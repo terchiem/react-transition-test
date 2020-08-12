@@ -13,8 +13,14 @@ function App() {
   useEffect(() => {
     async function loadData() {
       const response = await axios.get(BASE_URL);
-      response.data.length = 50;
-      setPhotos(response.data);
+      const photoRows = [];
+      const numPhotos = 50;
+
+      for (let i = 0; i < numPhotos; i+=4) {
+        photoRows.push(response.data.slice(i, i+4));
+      }
+
+      setPhotos(photoRows);
     }
     loadData();
   }, []);
@@ -33,7 +39,7 @@ function App() {
       <button onClick={clear}>Clear</button>
       <button onClick={load}>Load</button>
 
-      <PhotoList photos={photos} />
+      <PhotoList photoRows={photos} />
     </div>
   );
 }
