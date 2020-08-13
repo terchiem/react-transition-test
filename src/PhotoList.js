@@ -26,7 +26,7 @@ function PhotoList({ photoRows }) {
 
   useEffect(() => {
     if (mapLoaded) {
-      window.addEventListener('scroll', _.debounce(handleScroll, 10));
+      window.addEventListener('scroll', _.throttle(handleScroll, 200));
       window.scrollTo(window.scrollX, window.scrollY - 1);
       window.scrollTo(window.scrollX, window.scrollY + 1);
     }
@@ -34,6 +34,7 @@ function PhotoList({ photoRows }) {
 
 
   function handleScroll(e) {
+    console.log('scrolling')
     const clientTop = e.target.scrollingElement.scrollTop;
     const clientBottom = e.target.scrollingElement.clientHeight + clientTop;
 
