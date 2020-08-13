@@ -14,10 +14,11 @@ function App() {
     async function loadData() {
       const response = await axios.get(BASE_URL);
       const photoRows = [];
-      const numPhotos = 50;
+      const numPhotos = 100;
+      const perRow = 6;
 
-      for (let i = 0; i < numPhotos; i+=4) {
-        photoRows.push(response.data.slice(i, i+4));
+      for (let i = 0; i < numPhotos; i+=perRow) {
+        photoRows.push(response.data.slice(i, i+perRow));
       }
 
       setPhotos(photoRows);
@@ -39,7 +40,9 @@ function App() {
       <button onClick={clear}>Clear</button>
       <button onClick={load}>Load</button>
 
-      <PhotoList photoRows={photos} />
+      {photos.length ?
+        <PhotoList photoRows={photos} /> :
+        null}
     </div>
   );
 }

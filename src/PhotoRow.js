@@ -1,23 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef, Children } from 'react';
+import ReactDOM from 'react-dom';
 import Photo from './Photo';
 import './PhotoRow.css';
 
-function PhotoRow({ row }) {
+function PhotoRow({ idx, row, visible, getOffset }) {
 
-  const [visible, setVisible] = useState(false);
+  const rowRef = useRef();
 
   useEffect(() => {
-    console.log('mounted row');
+    const top = rowRef.current.offsetTop;
+    const bottom = rowRef.current.offsetHeight + top;
+    getOffset(idx, top, bottom);
   }, []);
 
-  function handleScroll(e) {
-    console.log('hello');
-  }
+  useEffect(() => {
+    console.log('visible is toggled')
+  }, [visible])
 
   return (
-    <div className="PhotoRow" onScroll={handleScroll}>
+    <div className="PhotoRow" ref={rowRef}>
       { row.length ?
-          row.map(photo => <Photo key={photo.id} url={photo.thumbnailUrl} title={photo.title} delay={photo.id*80} />) :
+          row.map((photo, i) => <Photo
+            key={photo.id}
+            url={photo.thumbnailUrl}
+            title={photo.title}
+            delay={photo.id*80}
+            visible={visible.visible}
+            idx={i}
+          />) :
           null }
     </div>
   );
