@@ -3,7 +3,7 @@ import './Photo.css';
 
 function Photo({ title, url, delay, visible, idx }) {
   return (
-    <div className={`Photo ${visible ? 'Photo-show' : ''}`} style={{ animationDelay: delay + 'ms', transitionDelay: idx*120 + 'ms' }}>
+    <div className={`Photo ${visible ? 'Photo-show' : ''}`} style={{ transitionDelay: idx*120 + 'ms' }}>
       <img src={url} alt={title} />
     </div>
   );

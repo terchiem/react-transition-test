@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, Children } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useEffect, useRef } from 'react';
 import Photo from './Photo';
 import './PhotoRow.css';
 
@@ -12,10 +11,6 @@ function PhotoRow({ idx, row, visible, getOffset }) {
     const bottom = rowRef.current.offsetHeight + top;
     getOffset(idx, top, bottom);
   }, []);
-
-  useEffect(() => {
-    console.log('visible is toggled')
-  }, [visible])
 
   return (
     <div className="PhotoRow" ref={rowRef}>

@@ -53,7 +53,6 @@ function PhotoList({ photoRows }) {
   }
 
   function setVisibility(idx, visible) {
-    console.log(`updated ${idx} to: ${visible}`);
     setVisMap(state => produce(state, draft => {
       draft[idx].visible = visible;
     }));
